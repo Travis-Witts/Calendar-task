@@ -41,51 +41,61 @@
       for (var i = 9; i < 18; i++) {
         var sectionTime = i + ":00  ";
         if (i < 10) {
-          sectionTime = "  " + i + ":00  "
+          sectionTime = "  " + i + ":00  ";
         }
         // Creating a row for each time
         var timeDiv = $("<div>").addClass("row");
         timeDiv.append($("<div>").addClass("time-block hour"))
         $(timeDiv).text(sectionTime);
+        var tense = $("<div>")
         // An if statement to check if it is before the current time and adding save button aswell
         if (moment({ hour:i+1, minute:0}).isBefore()) {
-          var tense = $("<div>").addClass("past");
-          tense.text("Task")
-          tense.attr("time", sectionTime)
-          timeDiv.append(tense)
+          tense.addClass("past");
+          tense.text("Task");
+          tense.attr("time", sectionTime);
+          timeDiv.append(tense);
           var save = $("<div>").addClass("saveBtn");
+          save.attr("save-time",sectionTime);
           save.text("Save");
-          timeDiv.append(save)
+          timeDiv.append(save);
 
         }
+        // Else checking if it is in the future
         else if (moment({ hour:i, minute:0}).isAfter()) {
-          var tense = $("<div>").addClass("future");
-          tense.text("Task")
-          tense.attr("time", sectionTime)
-          timeDiv.append(tense)
+          tense.addClass("future");
+          tense.text("Task");
+          tense.attr("time", sectionTime);
+          timeDiv.append(tense);
           var save = $("<div>").addClass("saveBtn");
+          save.attr("save-time",sectionTime);
           save.text("Save");
-          timeDiv.append(save)
+          timeDiv.append(save);
           
 
         }
+        // This else is designed to assign a class to a div if it is in the present
         else {
-          var tense = $("<div>").addClass("present");
-          tense.text("Task")
-          tense.attr("time", sectionTime)
-          timeDiv.append(tense)
+          tense.addClass("present");
+          tense.text("Task");
+          tense.attr("time", sectionTime);
+          timeDiv.append(tense);
           var save = $("<div>").addClass("saveBtn");
+          save.attr("save-time",sectionTime);
           save.text("Save");
-          timeDiv.append(save)
+          timeDiv.append(save);
 
         }
-
+        // Appending the row to the container
         $(".container").append(timeDiv);
       }
+      // Creating a text area for each of the divs
       var textArea = $("<input>").addClass("textarea");
-      $(".past, .present, .future").append(textArea)
+      $(".past, .present, .future").append(textArea);
+      // Creating a listener and a function for the save button
       $(".saveBtn").on("click", function(event) {
         event.preventDefault();
+        var saveTime = $(this).attr("save-time");
+        var saveText 
       })
     </script>
   </body>
