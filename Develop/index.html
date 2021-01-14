@@ -38,8 +38,6 @@
     // Setting the current day
       $("#currentDay").text(moment().format('LL'))
       // Storing the the time in a variable
-      var time = moment().format('LT')
-      var m = moment()
       for (var i = 9; i < 18; i++) {
         var sectionTime = i + ":00"
         var newDiv = $("<div>").addClass("time-block row hour")
