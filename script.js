@@ -41,6 +41,7 @@
       var textArea = $("<textarea>")
       textArea.attr("text-num", i)
       textArea.addClass("text-area")
+    //   Retrieving variable from local storage
       var local = localStorage.getItem(i)
       if (local) {
         textArea.text(local)
