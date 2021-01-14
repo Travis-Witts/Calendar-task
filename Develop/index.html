@@ -50,21 +50,21 @@
         var tense = $("<div>")
         // An if statement to check if it is before the current time and adding save button aswell
         if (moment({ hour:i+1, minute:0}).isBefore()) {
-          tense.addClass("past");
+          tense.addClass("past tense");
           tense.text("Task");
           tense.attr("time", sectionTime);
           timeDiv.append(tense);
         }
         // Else checking if it is in the future
         else if (moment({ hour:i, minute:0}).isAfter()) {
-          tense.addClass("future");
+          tense.addClass("future tense");
           tense.text("Task");
           tense.attr("time", i);
           timeDiv.append(tense);
         }
         // This else is designed to assign a class to a div if it is in the present
         else {
-          tense.addClass("present");
+          tense.addClass("present tense");
           tense.text("Task");
           tense.attr("time", i);
           timeDiv.append(tense);
@@ -76,7 +76,8 @@
         timeDiv.append(save);
         // Creating a text area for each of the divs
         var textArea = $("<textarea>")
-        textArea.addClass(i)
+        textArea.attr("text-num", i)
+        textArea.addClass("text-area")
         tense.append(textArea)
         // Appending the row to the container
         $(".container").append(timeDiv);
@@ -85,9 +86,8 @@
       $(".saveBtn").on("click", function(event) {
         event.preventDefault();
         var saveTime = $(this).attr("save-time");
-        var textToSave = $("." + saveTime);
-        console.log(textToSave.data())
-        console.log(saveTime)
+        var thisText = $(this).prev().find(".text-area")
+        console.log(thisText.val())
       })
     </script>
   </body>
