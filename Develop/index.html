@@ -54,48 +54,40 @@
           tense.text("Task");
           tense.attr("time", sectionTime);
           timeDiv.append(tense);
-          var save = $("<div>").addClass("saveBtn");
-          save.attr("save-time",sectionTime);
-          save.text("Save");
-          timeDiv.append(save);
-
         }
         // Else checking if it is in the future
         else if (moment({ hour:i, minute:0}).isAfter()) {
           tense.addClass("future");
           tense.text("Task");
-          tense.attr("time", sectionTime);
+          tense.attr("time", i);
           timeDiv.append(tense);
-          var save = $("<div>").addClass("saveBtn");
-          save.attr("save-time",sectionTime);
-          save.text("Save");
-          timeDiv.append(save);
-          
-
         }
         // This else is designed to assign a class to a div if it is in the present
         else {
           tense.addClass("present");
           tense.text("Task");
-          tense.attr("time", sectionTime);
+          tense.attr("time", i);
           timeDiv.append(tense);
-          var save = $("<div>").addClass("saveBtn");
-          save.attr("save-time",sectionTime);
-          save.text("Save");
-          timeDiv.append(save);
-
         }
+        // Creating a save button for each
+        var save = $("<button>").addClass("saveBtn");
+        save.attr("save-time",i);
+        save.text("Save");
+        timeDiv.append(save);
+        // Creating a text area for each of the divs
+        var textArea = $("<textarea>")
+        textArea.addClass(i)
+        tense.append(textArea)
         // Appending the row to the container
         $(".container").append(timeDiv);
       }
-      // Creating a text area for each of the divs
-      var textArea = $("<textarea>").addClass("textarea");
-      $(".past, .present, .future").append(textArea);
       // Creating a listener and a function for the save button
       $(".saveBtn").on("click", function(event) {
         event.preventDefault();
         var saveTime = $(this).attr("save-time");
-        var saveText 
+        var textToSave = $("." + saveTime);
+        console.log(textToSave.data())
+        console.log(saveTime)
       })
     </script>
   </body>
