@@ -11,6 +11,7 @@ textarea{
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+  width: 100%
 }
 
 .jumbotron {
@@ -28,6 +29,7 @@ textarea{
 .time-block{
   text-align: center;
   border-radius: 15px;
+  width:10%
 }
 
 .row {
@@ -45,16 +47,19 @@ textarea{
 .past {
   background-color: #d3d3d3;
   color: white;
+  width: 80%
 }
 
 .present {
   background-color: #ff6961;
   color: white;
+  width: 80%;
 }
 
 .future {
   background-color: #77dd77;
   color: white;
+  width: 80%;
 }
 
 .saveBtn {
@@ -63,6 +68,7 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
+  width: 10%
 }
 
 .saveBtn i:hover {

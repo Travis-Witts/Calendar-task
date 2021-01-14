@@ -36,23 +36,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript">
     // Setting the current day
-      $("#currentDay").text(moment().format('LL'))
-      // Storing the the time in a variable
+      $("#currentDay").text(moment().format('LL'));
+      // Turning the time into a string to be used later
       for (var i = 9; i < 18; i++) {
-        var sectionTime = i + ":00"
-        var newDiv = $("<div>").addClass("time-block row hour")
-        $(newDiv).text(sectionTime)
+        var sectionTime = i + ":00  ";
+        if (i < 10) {
+          sectionTime = "  " + i + ":00  "
+        }
+        // Creating a row for each time
+        var timeDiv = $("<div>").addClass("row");
+        timeDiv.append($("<div>").addClass("time-block hour"))
+        $(timeDiv).text(sectionTime);
+        // An if statement to check if it is before the current time and adding save button aswell
         if (moment({ hour:i+1, minute:0}).isBefore()) {
-          $(newDiv).addClass("past")
+          var tense = $("<div>").addClass("past");
+          tense.text("Task")
+          tense.attr("time", sectionTime)
+          timeDiv.append(tense)
+          var save = $("<div>").addClass("saveBtn");
+          save.text("Save");
+          timeDiv.append(save)
+
         }
         else if (moment({ hour:i, minute:0}).isAfter()) {
-          $(newDiv).addClass("future")
+          var tense = $("<div>").addClass("future");
+          tense.text("Task")
+          tense.attr("time", sectionTime)
+          timeDiv.append(tense)
+          var save = $("<div>").addClass("saveBtn");
+          save.text("Save");
+          timeDiv.append(save)
+          
+
         }
         else {
-          $(newDiv).addClass("present")
+          var tense = $("<div>").addClass("present");
+          tense.text("Task")
+          tense.attr("time", sectionTime)
+          timeDiv.append(tense)
+          var save = $("<div>").addClass("saveBtn");
+          save.text("Save");
+          timeDiv.append(save)
+
         }
-        $(".container").append(newDiv)
+
+        $(".container").append(timeDiv);
       }
+      var textArea = $("<input>").addClass("textarea");
+      $(".past, .present, .future").append(textArea)
+      $(".saveBtn").on("click", function(event) {
+        event.preventDefault();
+      })
     </script>
   </body>
 </html>
