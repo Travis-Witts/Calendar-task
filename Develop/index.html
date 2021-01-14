@@ -39,9 +39,20 @@
       $("#currentDay").text(moment().format('LL'))
       // Storing the the time in a variable
       var time = moment().format('LT')
-      for (i = 9; i < 18; i++) {
+      var m = moment()
+      for (var i = 9; i < 18; i++) {
+        var sectionTime = i + ":00"
         var newDiv = $("<div>").addClass("time-block row hour")
-        $(newDiv).text(i + ":00")
+        $(newDiv).text(sectionTime)
+        if (moment({ hour:i+1, minute:0}).isBefore()) {
+          $(newDiv).addClass("past")
+        }
+        else if (moment({ hour:i, minute:0}).isAfter()) {
+          $(newDiv).addClass("future")
+        }
+        else {
+          $(newDiv).addClass("present")
+        }
         $(".container").append(newDiv)
       }
     </script>
